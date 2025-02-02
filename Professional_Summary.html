@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+button {
+    background: #ffa500;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 48%;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button[type="button"] {
+    background: #6c757d;
+}
+
+button[type="button"]:hover {
+    background: #5a6268;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <form action="Skills.html" >
+        <div>
+                <h2>Professional Summary</h2>
+                <label for="Experience">Experience:</label>
+                <textarea id="Experience" placeholder="Enter your Experience" rows="4" cols="75"></textarea><br><br>
+                <label id="textAreaContainer" class="text-area-container">Projects:</label>
+                <textarea placeholder="Enter your project details" id="textAreaContainer" rows="4" cols="75"></textarea>
+                <button type="button" id="addButton"onclick="alert('Add Project Clicked')">Add Project</button>
+               
+                <br><br><button type="button" onclick="history.back()">Previous</button>&emsp13;
+                <button type="submit" id="Next">Next</button>
+        </div>
+    </form>
+    <script>
+        document.getElementById("professionalSummaryForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            // Get professional summary details from input fields
+            let professionalSummaryData = {
+                experience: document.getElementById("Experience").value,
+                projects: document.getElementById("textAreaContainer").value
+            };
+    
+            // Store data in localStorage
+            localStorage.setItem("professionalSummaryData", JSON.stringify(professionalSummaryData));
+    
+            // Redirect to next page
+            window.location.href = "Skills.html";
+        });
+    
+        // Autofill fields if data exists in localStorage
+        window.onload = function () {
+            let savedData = JSON.parse(localStorage.getItem("professionalSummaryData"));
+            if (savedData) {
+                document.getElementById("Experience").value = savedData.experience || "";
+                document.getElementById("textAreaContainer").value = savedData.projects || "";
+            }
+        };
+    
+        // Add Project Button Functionality
+        document.getElementById("addButton").addEventListener("click", function () {
+            alert("Add Project Clicked");
+        });
+    </script>
+    
+    <script>
+        const container = document.getElementById('textAreaContainer');
+        const addButton = document.getElementById('addButton');
+    
+        addButton.addEventListener('click', () => {
+          const newTextArea = document.createElement('textarea');
+          newTextArea.placeholder = "Enter your Project...";
+          container.appendChild(newTextArea);
+        });
+      </script>
+    
+</body>
+</html>

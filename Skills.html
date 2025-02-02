@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+input[type="checkbox"] {
+    margin: 5px 0;
+    transform: scale(1.2);
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+button {
+    background: #ffa500;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 48%;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button[type="button"] {
+    background: #6c757d;
+}
+
+button[type="button"]:hover {
+    background: #5a6268;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <form >
+        <div>
+            <h2>Skills</h2>
+            <input type="checkbox" id="Skills" required>
+            <label for="Skills">Artificial Intelligence</label><br>
+            <input type="checkbox" id="Skills" required>
+            <label for="Skills">Machine Learning</label><br>
+            <input type="checkbox" id="Skills" required>
+            <label for="Skills">Data Science</label><br>
+            <input type="checkbox" id="Skills" required>
+            <label for="Skills">Full Stack Development</label><br>
+            <input type="checkbox" id="Skills" required>
+            <label for="Skills">Cloud Computing</label><br>
+            <input type="checkbox" id="Skills" required>
+            <label for="Skills">DevOps</label><br>
+            <input type="checkbox" id="Skills" required>
+            <label for="Skills">Cybersecurity</label><br>
+            <input type="checkbox" id="Skills" required>
+            <label for="Skills">Problem Solving</label><br>
+            <input type="checkbox" id="Skills" required>
+            <label for="Skills">Adaptability</label><br>
+            <input type="checkbox" id="Skills" required>
+            <label for="Skills">Project Management</label><br><br>
+            <label for="Additional Skills">Additional Skills:</label>
+            <textarea id="Additional Skills" placeholder="Enter your Additional Skills" rows="4" cols="75"></textarea><br><br>
+            <button type="button" onclick="history.back()">Previous</button>&emsp13;
+            <button type="submit" id="addButton">Generate</button>
+        </div>
+    </form>
+    <script>
+        document.getElementById("addButton").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            // Get all checked skills
+            let selectedSkills = [];
+            let checkboxes = document.querySelectorAll("input[type='checkbox']");
+            checkboxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    selectedSkills.push(checkbox.nextElementSibling.innerText);
+                }
+            });
+    
+            // Get additional skills
+            let additionalSkills = document.getElementById("Additional Skills").value;
+    
+            // Store data in localStorage
+            let skillsData = {
+                skills: selectedSkills,
+                additionalSkills: additionalSkills
+            };
+            localStorage.setItem("skillsData", JSON.stringify(skillsData));
+    
+            // Redirect or generate resume
+            alert("Skills data saved successfully!");
+        });
+    
+        // Autofill fields if data exists in localStorage
+        window.onload = function () {
+            let savedData = JSON.parse(localStorage.getItem("skillsData"));
+            if (savedData) {
+                let checkboxes = document.querySelectorAll("input[type='checkbox']");
+            }
+        }
+    </script>
+     
+    
+</body>
+</html>

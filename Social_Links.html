@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background: #ffa500;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 48%;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button[type="button"] {
+    background: #6c757d;
+}
+
+button[type="button"]:hover {
+    background: #5a6268;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+    
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <form action="Education.html">
+        <div>
+            <h2>Social Links</h2>
+            <label for="Linkedin">Linkedin:</label>
+            <input type="text" id="Linkedin" placeholder="Enter your Linkedin URL" required>
+            <br><br>
+            <label for="GitHub">GitHub:</label>
+            <input type="text" id="GitHub" placeholder="Enter your GitHub URL" required>
+            <br><br>
+            <label for="Portfolio">Portfolio:</label>
+            <input type="text" id="Portfolio" placeholder="Enter your Portfolio URL" >
+            <br><br><button type="button" onclick="history.back()">Previous</button>&emsp13;
+            <button type="submit" id="addButton">Next</button>
+        </div>
+    </form>
+    <script>
+        document.getElementById("socialForm").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent form submission
+    
+            // Get social links values
+            let socialLinks = {
+                linkedin: document.getElementById("Linkedin").value,
+                github: document.getElementById("GitHub").value,
+                portfolio: document.getElementById("Portfolio").value
+            };
+    
+            // Store in localStorage
+            localStorage.setItem("socialLinks", JSON.stringify(socialLinks));
+    
+            // Redirect to the next page
+            window.location.href = "Education.html";
+        });
+    
+        // Autofill fields if data exists in localStorage
+        window.onload = function () {
+            let savedLinks = JSON.parse(localStorage.getItem("socialLinks"));
+            if (savedLinks) {
+                document.getElementById("Linkedin").value = savedLinks.linkedin || "";
+                document.getElementById("GitHub").value = savedLinks.github || "";
+                document.getElementById("Portfolio").value = savedLinks.portfolio || "";
+            }
+        };
+    </script>
+    
+    
+</body>
+</html>

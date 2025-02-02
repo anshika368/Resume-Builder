@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background: #ffa500;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 48%;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button[type="button"] {
+    background: #6c757d;
+}
+
+button[type="button"]:hover {
+    background: #5a6268;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <form action="Professional_Summary.html">
+        <div>
+            <h2>Education</h2>
+            <label for="School Name">School Name:</label>
+            <input type="text" id="School Name" placeholder="Enter your School Name" >&emsp;
+            <label for="12th%">Higher Secondary:</label>
+            <input type="number" id="12th%" placeholder="Enter your percentage" required><br><br>
+            <label for="degree">Degree:</label>
+            <select id="degree" name="degree" required>
+                <option value=""disabled selected>--Select Degree--</option>
+                <option value="associate">Associate's Degree</option>
+                <option value="bachelor">Bachelor's Degree</option>
+                <option value="master">Master's Degree</option>
+                <option value="doctorate">Doctorate (PhD, MD, etc.)</option>
+                <option value="professional">Professional Certification</option>
+            </select>&emsp;
+            <label for="CGPA">CGPA:</label>
+            <input type="number" id="CGPA" placeholder="Enter your current GPA" required>
+            <br><br>
+            <label for="Field of Study">Field of Study:</label>
+            <select id="Field of Study" name="Field of Study" required>
+                <option value="">--Select Field of Study--</option>
+                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                <option value="computer_science">Computer Science</option>
+                <option value="engineering">Engineering</option>
+                <option value="business">Business Administration</option>
+                <option value="healthcare">Healthcare & Medicine</option>
+                <option value="social_sciences">Social Sciences</option>
+                <option value="arts">Arts & Humanities</option>
+                <option value="law">Law</option>
+                <option value="education">Education</option>
+                <option value="environmental_studies">Environmental Studies</option>
+                <option value="mathematics">Mathematics</option>
+                <option value="physics">Physics</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="biology">Biology</option>
+                <option value="psychology">Psychology</option>
+                <option value="economics">Economics</option>
+            </select>&emsp;
+            <label for="Graduation Date">Graduation Date:</label>
+            <input type="date" id="Graduation Date" placeholder="Enter your Graduation Date" required>&emsp;
+            <br><br><button type="button" onclick="history.back()">Previous</button>&emsp13;
+            <button type="submit" id="addButton">Next</button>
+        <div>
+    </form>
+    <script>
+        document.getElementById("educationForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            // Get education details from input fields
+            let educationData = {
+                schoolName: document.getElementById("School Name").value,
+                higherSecondary: document.getElementById("12th%").value,
+                degree: document.getElementById("degree").value,
+                cgpa: document.getElementById("CGPA").value,
+                fieldOfStudy: document.getElementById("Field of Study").value,
+                graduationDate: document.getElementById("Graduation Date").value
+            };
+    
+            // Store data in localStorage
+            localStorage.setItem("educationData", JSON.stringify(educationData));
+    
+            // Redirect to next page
+            window.location.href = "Professional_Summary.html";
+        });
+    
+        // Autofill fields if data exists in localStorage
+        window.onload = function () {
+            let savedData = JSON.parse(localStorage.getItem("educationData"));
+            if (savedData) {
+                document.getElementById("School Name").value = savedData.schoolName || "";
+                document.getElementById("12th%").value = savedData.higherSecondary || "";
+                document.getElementById("degree").value = savedData.degree || "";
+                document.getElementById("CGPA").value = savedData.cgpa || "";
+                document.getElementById("Field of Study").value = savedData.fieldOfStudy || "";
+                document.getElementById("Graduation Date").value = savedData.graduationDate || "";
+            }
+        };
+    </script>
+    
+   
+    
+</body>
+</html>
